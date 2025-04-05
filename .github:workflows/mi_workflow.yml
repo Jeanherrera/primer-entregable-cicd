@@ -1,0 +1,31 @@
+name: Mi Primer Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+      - develop    
+
+jobs:
+  imprimir_info:  
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Imprimir Mensaje Personalizado
+        run: |
+          echo "Hola, soy Jean Carlos Herrera Meza y este es mi primer workflow!"
+          echo "La fecha y hora actual es: $(date)"  
+
+      - name: Configurar Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.12
+
+      - name: Ejecutar script Python
+        run: python my_script.py
